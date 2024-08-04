@@ -1,6 +1,10 @@
 #pragma once
 
+#include "view.hpp"
+
 #include <QtWidgets>
+
+
 
 class MainWindow : public QWidget
 {
@@ -13,17 +17,12 @@ class MainWindow : public QWidget
 		void configure();
 		void setupMainWidget();
 		void createMenus();
-		void setupView(QJsonObject const& a_config);
+		void setupView();
 		void setupLayout();
 
 	private:
 		QMenu* m_fileMenu;
 		QMenuBar* m_menuBar;
-		//DataMemory* m_dataMemory;
+		View* m_view;
 
-	private:
-		//View* m_view;
-
-		//QThread* m_dlibThread;
-		//DlibNetwork* m_dlib;
 };

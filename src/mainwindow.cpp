@@ -11,6 +11,7 @@ MainWindow::MainWindow()
 
 void MainWindow::configure() 
 {
+	setupView();
 	createMenus();
 	setupLayout();
 	setupMainWidget();
@@ -18,26 +19,21 @@ void MainWindow::configure()
 
 void MainWindow::setupMainWidget() 
 {
-	#ifdef DEBUG
-	Logger->debug("MainWindow::setupMainWidget()");
-	#endif
-	
 	QGridLayout* mainLayout = new QGridLayout;
-	//m_view->setMinimumWidth(1000);
 	mainLayout->setContentsMargins(0, 0, 0, 0);
-	//mainLayout->addWidget(m_view, 0, 0);
+	mainLayout->addWidget(m_view, 0, 0);
 	setLayout(mainLayout);
-
 	resize(1600, 600);
 }
 
 void MainWindow::createMenus()
 {}
 
-void MainWindow::setupView(QJsonObject const& a_config)
+void MainWindow::setupView()
 {
-	//m_view = new View(a_config, m_dataMemory);
-	//m_view->setMinimumWidth(1000);
+	m_view = new View();
+	m_view->setMinimumWidth(1000);
+	m_view->configure();
 }
 
 void MainWindow::setupLayout() 

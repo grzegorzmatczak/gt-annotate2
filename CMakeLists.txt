@@ -53,19 +53,27 @@ add_subdirectory(utils2 build)
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 set(SRC
-  src/main.cpp)
-
-set(SRC
   src/main.cpp
+  src/graphicsview.cpp
+  src/graphicsscene.cpp
+  src/view.cpp
+  src/toolbar.cpp
+  src/graphicspixmapitem.cpp
+  src/graphicsrectitem.cpp
   src/mainwindow.cpp)
 
 set(HEADERS
+  include/graphicsview.hpp
+  include/graphicsscene.hpp
+  include/view.hpp
+  include/toolbar.hpp
+  include/graphicspixmapitem.hpp
+  include/graphicsrectitem.hpp
   include/mainwindow.hpp)
 
 add_executable(${PROJECT_NAME} ${SRC} ${HEADERS})
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets Threads::Threads utils2_lib)
-
 
 message("CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE} ")
 

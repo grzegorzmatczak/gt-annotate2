@@ -3,7 +3,7 @@
 #include "mainwindow.hpp"
 
 #include "logger.hpp"
-
+#include "mainlogger.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 
     QString name1{"main.log"};
     QString name2{"mainD.log"};
-    Logger::start(name1, name2);
+    MainLogger::start(name1, name2);
     qDebug("[log] main");
 
 	MainWindow window{};
