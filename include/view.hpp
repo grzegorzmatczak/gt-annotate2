@@ -2,12 +2,19 @@
 
 #include <QtWidgets>
 #include <QHash>
+#include <QJsonObject>
 
 #include "graphicsscene.hpp"
 #include "graphicsview.hpp"
 #include "toolbar.hpp"
 #include "painter.hpp"
 
+#include "logger.hpp"
+#include "mainlogger.hpp"
+#include "colorpicker.hpp"
+#include "pensizepicker.hpp"
+
+class Painter;
 
 class View : public QFrame
 {
@@ -24,12 +31,17 @@ class View : public QFrame
 		void createMenus();
 		void creteAction();
 		void setupLeftToolBar();
-		
+	
+	private slots:
+		void onSetPaint();
+		void onSetMove();
+		void onSetROI();
+
 	private:
-		GraphicsView *m_graphicsView;
-		GraphicsScene *m_graphicsScene;
-		ToolBar* m_leftToolBar;
-		ToolBar* m_bottomToolBar;
+		GraphicsView *mGraphicsView;
+		GraphicsScene *mGraphicsScene;
+		ToolBar* mLeftToolBar;
+		ToolBar* mBottomToolBar;
 
 	private:
 		QAction* action_paint;
@@ -46,12 +58,12 @@ class View : public QFrame
 		QAction* action_useNetwork;
 
 	private:
-		QMenu* m_fileMenu;
-		QMenuBar* m_menuBar;
+		QMenu* mFileMenu;
+		QMenuBar* mMenuBar;
 	
 	private: //Layout
-		QGridLayout *m_vLayout;
-		QGridLayout *m_hLayout;
+		QGridLayout *mVLayout;
+		QGridLayout *mHLayout;
 
 	private:
 		qreal m_scaleOpacity;
@@ -60,6 +72,11 @@ class View : public QFrame
 		qreal m_scale;
 
 	private:
-		Painter* m_painter;
+		Painter* mPainter;
+		ColorPicker* mColorPicker;
+		PenSizePicker* mPenSizePicker;
+	
+	private:
+		std::unique_ptr<Logger> mLogger;
 
 };

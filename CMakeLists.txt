@@ -54,26 +54,44 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 set(SRC
   src/main.cpp
+  src/colorpicker.cpp
+  src/pensizepicker.cpp
   src/graphicsview.cpp
   src/graphicsscene.cpp
   src/view.cpp
+  src/painter.cpp
+  src/paintersettings.cpp
+  src/labeldialog.cpp
   src/toolbar.cpp
   src/graphicspixmapitem.cpp
   src/graphicsrectitem.cpp
   src/mainwindow.cpp)
+  
 
 set(HEADERS
+  include/colorpicker.hpp
+  include/pensizepicker.hpp
   include/graphicsview.hpp
   include/graphicsscene.hpp
   include/view.hpp
+  include/painter.hpp
+  include/paintersettings.hpp
+  include/labeldialog.hpp
   include/toolbar.hpp
   include/graphicspixmapitem.hpp
   include/graphicsrectitem.hpp
   include/mainwindow.hpp)
 
+macro(copy_json jsonname)
+  configure_file(${jsonname} Debug/${jsonname})
+  configure_file(${jsonname} Release/${jsonname})
+endmacro()
+
+copy_json(config.json)
+
 add_executable(${PROJECT_NAME} ${SRC} ${HEADERS})
 
-target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets Threads::Threads utils2_lib)
+target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets Threads::Threads utils2_lib Qt5::OpenGL)
 
 message("CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE} ")
 

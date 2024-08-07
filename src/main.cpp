@@ -11,10 +11,9 @@ int main(int argc, char* argv[])
 
 	qRegisterMetaType<QString>("QString");
 
-    QString name1{"main.log"};
-    QString name2{"mainD.log"};
-    MainLogger::start(name1, name2);
-    qDebug("[log] main");
+    QString log{"log.log"};
+	QString logd{"logd.log"};
+	MainLogger::start(log, logd);
 
 	MainWindow window{};
 	window.show();
